@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body class='Asistencia'>
+    <h1 style="font-size: 70px;">GESTION DE ASISTENCIA  </h1>
+    <img src="Imgs/Logo_Universidad.png" style="position: absolute; top: 20px; right: 20px; width: 128px; z-index: 10;";">
+    <br><br>
+    <hr>
+    <form>
+        <fieldset>
+            <h2>Crear lista de asistencias</h2>
+        </fieldset>
+        <fieldset>
+            <h2>Información de la asignatura</h2>
+            <label for="semestre">Semestre de la asignatura: </label>
+            <input type="number" id="semestrecrear" min="1" max="99" required oninput="this.value = this.value.slice(0, 2)">
+            <br><br>
+            <label for="grupo">Grupo de la asignatura:</label>
+            <input type="text" id="grupocrear" placeholder="Ej: 401M o 402M" required autocomplete="off">
+            <br><br>
+            <label for="codigo">Codigo de la asignatura:</label>
+            <input type="text" id="codigocrear" placeholder="12345" required autocomplete="off">
+            <br><br> 
+        </fieldset>
+        <fieldset>
+            <h2>Datos de la lista</h2>
+            <label for="fecha">Fecha: </label>
+            <input type="date" id="fechacrear" required autocomplete="off">
+            <br><br>
+            <label for="Horadeinicio">Hora de Inicio: </label>
+            <input type="time" id="horainicrear" required autocomplete="off">
+            <br><br>
+            <input type="submit" value="Crear" id="crearLista" onclick="crearlista(event)"> 
+        </fieldset>
+    </form>
+    <form>
+        <fieldset>
+            <h2>Llenar Asistencia</h2>
+            <label for="codigo">Codigo de la asignatura: </label>
+            <input type="text" id="codigollenar" placeholder="12345" required autocomplete="off">
+            <br><br>
+            <label for="fecha">Fecha: </label>
+            <input type="date" id="fechallenar" required autocomplete="off">
+            <br><br>
+            <label for="Horadeinicio">Hora de Inicio: </label>
+            <input type="time" id="horainillenar" required autocomplete="off">
+            <br><br>
+            <input type="submit" value="Buscar" id="buscarlista" onclick="buscarlista(event)">
+            <br><br>
+        </fieldset>
+        <fieldset>
+            <h2>Lista de asistencia</h2>
+            <div id="contenedor-lista">
+                <table id="tablaAsisLlenar">
+                    <thead>
+                        <tr>
+                            <th>Tipo de Documento</th>
+                            <th>Número de Documento</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <input type="submit" value="Llenar" id="llenarlista" onclick="lleanarlista(event)">
+            <br><br>
+        </fieldset>
+    </form>
+    <form>
+        <fieldset>
+            <h2>Modificar Asistencia</h2>
+        </fieldset>
+        <fieldset>
+            <h2>Información de la asignatura</h2>
+            <label for="codigo">Codigo de la asignatura: </label>
+            <input type="text" id="codigomod" placeholder="12345" required autocomplete="off">
+            <br><br>
+            <label for="semestre">Semestre de la asignatura: </label>
+            <input type="number" id="Semestremod" min="1" max="99" required oninput="this.value = this.value.slice(0, 2)">
+            <br><br>
+            <label for="grupo">Grupo de la asignatura: </label>
+            <input type="text" id="grupomod" placeholder="Ej: 401M o 402M" required autocomplete="off">
+            <br><br>
+            <label for="fecha">Fecha: </label>
+            <input type="date" id="fechamod" required autocomplete="off">
+            <br><br>
+            <label for="Horadeinicio">Hora de Inicio: </label>
+            <input type="time" id="horainimod" required autocomplete="off">
+            <br><br>
+        </fieldset>
+        <fieldset>
+            <h2>Información del estudiante</h2>
+            <label for="tipoDocEst">Tipo de documento</label><br><br>
+            <select>
+                <option>CC</option>
+                <option>TI</option>
+            </select>
+            <br><br>
+            <label for="numDocEst">Número de documento</label><br><br>
+            <input type="text" id="numDocMod" placeholder="Ej: 12345678" required autocomplete="off">
+            <br><br>
+            <input type="submit" value="Buscar" id="buscarlista" onclick="buscarlista(event)">
+            <br><br>
+        </fieldset>
+        <fieldset>
+            <h2>Asistencia a modificar</h2>
+            <div id="lista_modificar">
+                <table id="tablaAsisMod">
+                    <thead>
+                        <tr>
+                            <th>Tipo de Documento</th>
+                            <th>Número de Documento</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <input type="submit" value="Modificar" id="modificarAsistencia" onclick="modificarAsistencia(event)">
+            <br><br>
+        </fieldset>
+    </form>
+    <form>
+        <fieldset>
+            <h2>Consultar Asistencia</h2>
+        </fieldset>
+        <fieldset>
+            <h2>Información de la asignatura</h2>
+            <label for="codigo">Codigo de la asignatura: </label><br><br>
+            <input type="text" id="codigocon" placeholder="12345" required autocomplete="off">
+            <br><br>
+            <label for="semestre">Semestre de la asignatura: </label><br><br>
+            <input type="text" id="semestrecon" placeholder="Ej: 2024-1 2024-2" required autocomplete="off">
+            <br><br>
+            <label for="grupo">Grupo de la asignatura: </label><br><br>
+            <input type="text" id="grupocon" placeholder="Ej: 401M o 402M" required autocomplete="off">
+            <br><br>
+        </fieldset>
+        <fieldset>
+            <h2>Datos de la lista</h2>
+            <label for="Horadeinicio">Hora de Inicio: </label><br><br>
+            <input type="time" id="horainicon" required autocomplete="off">
+            <br><br>
+            <label for="fecha">Fecha: </label><br><br>
+            <input type="date" id="fechacon" required autocomplete="off">
+            <br><br>
+            <input type="submit" value="consultar" id="consultarAsistencia" onclick="consultarAsistencia(event)">
+            <br><br>
+        </fieldset>
+        <fieldset>
+            <h2>Lista de asistencia</h2>
+            <div id="lista_consultar">
+                <table id="tablaAsisCon">
+                    <thead>
+                        <tr>
+                            <th>Tipo de Documento</th>
+                            <th>Número de Documento</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+
+
+</body>
+</html>

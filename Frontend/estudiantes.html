@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body class="Estudiante">
+<h1 class="h1Est"> GESTION DE ESTUDIANTES </h1>
+    
+    <img src="Imgs/Logo_Universidad.png" style="position: absolute; top: 20px; right: 20px; width: 128px; z-index: 10;";">
+    <br>
+
+    <!-- AGREGAR ESTUDIANTE A FACULTAD -->
+    <hr>
+    <h2 style="text-align: center; font-size: 50px;">AGREGAR ESTUDIANTE A FACULTAD</h2>
+    <hr>
+
+    <div class="AgregarEstudiante">
+        <div class="form-group">
+            <label for="nombres">Ingresa los nombres del estudiante</label>
+            <input type="text" id="nombres" class="input-estilo" placeholder="Ej: Juan Carlos">
+        </div>
+        
+        <br>
+        
+        <div class="form-group">
+            <label for="tipo-id">Ingresa el tipo de identificación</label>
+            <input type="text" id="tipoId" class="input-estilo" placeholder="Ej: CC, TI, CE">
+        </div>
+        
+        <br>
+        
+        <div class="form-group">
+            <label for="numero-id">Ingresa el número de documento</label>
+            <input type="text" id="numeroId" class="input-estilo" placeholder="Ej: 1234567890">
+            
+        </div>
+        <br>
+
+        <div class = "form-group">
+            <button type="button" class="btn" id="guardarEstudiante" onclick="guardarEst()">Guardar estudiante</button>
+        </div>
+    </div>
+
+
+    
+
+<br> <br>
+    <!-- EDITAR ESTUDIANTE A FACULTAD -->
+<hr>
+<h2 style="text-align: center; font-size: 50px;">MODIFICAR ESTUDIANTE DE FACULTAD</h2>
+    <hr>
+    <div class="AgregarEstudiante">
+        <div class = "form-group">
+            <label style="text-align: center;" for="nuevoTipo">Ingresa el numero de identificación del estudiante</label>
+            <input type="text" id="numeroId" class="input-estilo">
+        </div>
+
+        <br>
+
+        <div class = "form-group">
+            <label style="text-align: center;" for="nuevoNombre">Ingresa los nuevos nombres del estudiante</label>
+            <input type="text" id="Nuevos_nombres" class="input-estilo">
+        </div>
+
+        <br>
+
+        <div class = "form-group">
+            <label style="text-align: center;" for="nuevoTipo">Ingresa el nuevo tipo de identificación</label>
+            <input type="text" id="tipo-id" class="input-estilo">
+        </div>
+
+        <br>
+
+        <div class = "form-group">
+            <button type="button" class="btn" onclick="editarEst()">Modificar estudiante</button>
+        </div>
+    </div>
+
+
+    <br> <br>
+        <p id="parrafo"></p>
+
+    <script src="estudiantes.js"></script>
+</body>
+</html> 
