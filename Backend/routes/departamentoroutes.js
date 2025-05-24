@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const estudiantescontroller = require("../controllers/departamentocontroller")
+const departamentoController = require("../controllers/departamentocontroller");
 
-router.get("/",estudiantescontroller.consultar)
-router.post("/",estudiantescontroller.ingresar)
-
+router.get("/", departamentoController.consultarDepartamento);
+router.post("/", departamentoController.editarDepartamento);
 
 module.exports = router;
-
-//hola

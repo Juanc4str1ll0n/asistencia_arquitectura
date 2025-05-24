@@ -1,20 +1,18 @@
-exports.consultar = async (req, res) => {
-    try {
-        // Lógica para consultar el nombre del departamento
-        res.json({ nombre: "Nombre del Departamento" });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+let departamentoActual = {
+  nombre: "Ingeniería de Sistemas y Computación"
 };
 
-exports.modificar = async (req, res) => {
-    try {
-        const { nuevoNombre } = req.body;
-        // Lógica para modificar el nombre del departamento
-        res.send("Departamento modificado exitosamente");
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+exports.consultarDepartamento = (req, res) => {
+  res.json({ nombre: departamentoActual.nombre });
 };
 
-//hola
+exports.editarDepartamento = (req, res) => {
+  const { nombre } = req.body;
+
+  if (!nombre || nombre.trim() === "") {
+    return res.status(400).json({ mensaje: "El nombre del departamento es requerido" });
+  }
+
+  departamentoActual.nombre = nombre.trim();
+  res.json({ mensaje: "Actualizado con éxito", nombre: departamentoActual.nombre });
+};
