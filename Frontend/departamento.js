@@ -43,3 +43,27 @@ function consultarDep() {
     });
 }
 
+function consultarEstudiantePorId() {
+  const documento = document.getElementById("documento").value.trim();
+
+  if (!documento) {
+    alert("Por favor ingresa un documento para consultar.");
+    return;
+  }
+
+  const datos = localStorage.getItem("estudiantes");
+  if (!datos) {
+    alert("No hay estudiantes registrados.");
+    return;
+  }
+
+  const estudiantes = JSON.parse(datos);
+  const estudiante = estudiantes.find(est => est.numeroId === documento);
+
+  if (estudiante) {
+    alert(`Estudiante encontrado:\nNombres: ${estudiante.nombres}\nTipo de ID: ${estudiante.tipoId}\nNúmero: ${estudiante.numeroId}`);
+  } else {
+    alert("Estudiante no encontrado en la facultad.");
+  }
+}
+

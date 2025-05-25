@@ -1,34 +1,48 @@
-class EstudiantesController{
-    constructor(){
-    }
-    consultar(req,res){
-        try{
-            let arreglo=[];
-            let myObj = {Nombre: "Daniel Esteban", Tipo_Documento: "CC", Codigo: "1077112696"};
-            let myObj2 = {Nombre: "Pedro Gónzales", Tipo_Documento: "CC", Codigo: "1037112636"};
+let estudiantes = [];
 
-            arreglo.push (myObj);
-            arreglo.push (myObj2);
+function guardarEstudiante(req, res) {
+  const { nombres, tipoId, numeroId } = req.body;
 
-            let myJSON = JSON.stringify(arreglo);
+  if (!nombres || !tipoId || !numeroId) {
+    return res.status(400).json({ mensaje: "Faltan campos obligatorios" });
+  }
 
-            res.status(200).send (myJSON);
-        }catch (err){
-            res.status(500).send(err.message);
-        }
-    }
-    ingresar(req,res){
-        try{
-            const {Nombre, Tipo_Documento, Codigo} = req.body;
-            console.log ("Documento de identidad: " + Codigo);
-            console.log ("Nombre: "+Nombre);
-            console.log ("Tipo de Documento: "+ Tipo_Documento);
-            res.status(200).send ("Funciono ok");
-        }catch (err){
-            res.status(500).send(err.message);
-        }
-    }
+  const existe = estudiantes.find(est => est.numeroId === numeroId);
+  if (existe) {
+    return res.status(409).json({ mensaje: "Ya existe un estudiante con ese número de ID" });
+  }
+
+  estudiantes.push({ nombres, tipoId, numeroId });
+  return res.status(200).json({ mensaje: "Estudiante guardado con éxito" });
 }
-module.exports = new EstudiantesController();
 
-//hola
+function editarEstudiante(req, res) {
+  const { numeroId, nombres, tipoId } = req.body;
+
+  const estudiante = estudiantes.find(est => est.numeroId === numeroId);
+  if (!estudiante) {
+    return res.status(404).json({ mensaje: "Estudiante no encontrado" });
+  }
+
+  estudiante.nombres = nombres;
+  estudiante.tipoId = tipoId;
+
+  return res.status(200).json({ mensaje: "Estudiante modificado con éxito" });
+}
+
+function consultarEstudiante(req, res) {
+  const { numeroId } = req.query;
+
+  const estudiante = estudiantes.find(est => est.numeroId === numeroId);
+  if (!estudiante) {
+    return res.status(404).json({ mensaje: "Estudiante no encontrado" });
+  }
+
+  return res.status(200).json(estudiante);
+}
+
+module.exports = {
+  guardarEstudiante,
+  editarEstudiante,
+  consultarEstudiante
+};
