@@ -12,15 +12,15 @@ exports.consultar = async (req, res) => {
     }
 };
 
-exports.ingresar = async (req, res) => {
-    try {
-        const { codigo, fecha, horaInicio, grupo, semestre } = req.body;
-        // Lógica para crear una nueva lista de asistencia
-        res.status(201).send("Lista de asistencia creada exitosamente");
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
+// exports.ingresar = async (req, res) => {
+//     try {
+//         const { codigo, fecha, horaInicio, grupo, semestre } = req.body;
+//         // Lógica para crear una nueva lista de asistencia
+//         res.status(201).send("Lista de asistencia creada exitosamente");
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// };
 exports.llenar = async (req, res) => {
     try {
         const { codigo, fecha, horaInicio, estudiantes } = req.body;

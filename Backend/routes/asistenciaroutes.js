@@ -3,10 +3,7 @@ const router = express.Router();
 const asistenciasController = require("../controllers/asistenciascontroller");
 
 router.get("/", asistenciasController.consultar);
-router.post("/", asistenciasController.crear);
-router.put("/", asistenciasController.actualizar);
+router.post("/", asistenciasController.llenar);
 router.patch("/", asistenciasController.modificar);
 
 module.exports = router;
-
-//hola

@@ -3,6 +3,6 @@ const router = express.Router();
 const departamentoController = require("../controllers/departamentocontroller");
 
 router.get("/", departamentoController.consultarDepartamento);
-router.post("/", departamentoController.editarDepartamento);
+router.put("/", departamentoController.editarDepartamento);
 
 module.exports = router;
