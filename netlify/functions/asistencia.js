@@ -12,4 +12,3 @@ router.use ("/asistencia",asistenciaroutes);
 var handler = app.use ('/.netlify/functions',router);
 exports.handler = serverless (app);
 
-//hola
