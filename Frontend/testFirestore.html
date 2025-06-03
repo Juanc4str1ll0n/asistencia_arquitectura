@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Firebase</title>
+</head>
+<body>
+    <h1>Probando conexión con Firestore</h1>
+    <button id="btnAgregar">Agregar documento</button>
+
+    <!-- Firebase v9 compat -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-compat.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "tu-api-key",
+            authDomain: "manejoasistencia-61b56.firebaseapp.com",
+            projectId: "manejoasistencia-61b56",
+            storageBucket: "manejoasistencia-61b56.firebasestorage.app",
+            messagingSenderId: "920437242924",
+            appId: "1:920437242924:web:2bcc9fa1ad97e5ab3ee589"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById("btnAgregar").addEventListener("click", async () => {
+            try {
+                const docRef = await db.collection("pruebas").add({
+                    nombre: "DMSC",
+                    creado: new Date().toLocaleString()
+                });
+                alert("Documento escrito con ID: " + docRef.id);
+            } catch (e) {
+                alert("Error: " + e.message);
+                console.error("Error: ", e);
+            }
+        });
+    </script>
+</body>
+</html>

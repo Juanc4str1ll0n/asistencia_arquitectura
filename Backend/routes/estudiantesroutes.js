@@ -1,22 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const estudiantescontroller = require("../controllers/estudiantescontrollers")
+const estudiantesController = require("../controllers/estudiantescontrollers");
 
-router.get("/",estudiantescontroller.guardarEstudiante)
-router.post("/",estudiantescontroller.editarEstudiante)
-router.get("/", estudiantescontroller.consultarEstudiante)
-
+// ✅ CORREGIDO
+router.post("/", estudiantesController.guardarEstudiante);    // CREATE
+router.get("/", estudiantesController.consultarEstudiante);   // READ  
+router.put("/", estudiantesController.editarEstudiante);      // UPDATE
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
 
 // const express = require("express");
 // const router = express.Router();

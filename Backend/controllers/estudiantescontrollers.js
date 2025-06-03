@@ -1,4 +1,42 @@
-let estudiantes = [];
+const { db } = require('../config/firebase'); // Agregar import
+const { collection, addDoc, getDocs, query, where, updateDoc, doc } = require('firebase/firestore');
+
+exports.guardarEstudiante = async (req, res) => {
+    try {
+        const { nombres, tipoId, numeroId } = req.body;
+        
+        if (!nombres || !tipoId || !numeroId) {
+            return res.status(400).json({ mensaje: "Faltan campos obligatorios" });
+        }
+
+        // Verificar si existe
+        const q = query(collection(db, "estudiantes"), where("numeroId", "==", numeroId));
+        const querySnapshot = await getDocs(q);
+        
+        if (!querySnapshot.empty) {
+            return res.status(409).json({ mensaje: "Ya existe un estudiante con ese número de ID" });
+        }
+
+        // Guardar en Firebase
+        const docRef = await addDoc(collection(db, "estudiantes"), {
+            nombres,
+            tipoId, 
+            numeroId,
+            fechaCreacion: new Date()
+        });
+
+        res.status(201).json({ 
+            mensaje: "Estudiante guardado con éxito", 
+            id: docRef.id 
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+
+/* let estudiantes = [];
 
 function guardarEstudiante(req, res) {
   const { nombres, tipoId, numeroId } = req.body;
@@ -45,4 +83,4 @@ module.exports = {
   guardarEstudiante,
   editarEstudiante,
   consultarEstudiante
-};
+}; */
