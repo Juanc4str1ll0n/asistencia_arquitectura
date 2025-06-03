@@ -1,4 +1,4 @@
-const { db } = require('../Config/FirebaseConfig'); 
+const { db } = require('../Confi/FirebaseConfig'); 
 const { collection, addDoc, getDocs, query, where, updateDoc, doc } = require('firebase/firestore');
 
 const COLLECTION_NAME = 'asistencias';
