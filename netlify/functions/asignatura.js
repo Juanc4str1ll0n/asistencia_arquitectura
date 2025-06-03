@@ -1,34 +1,19 @@
-var express = require('express');
-var cors = require("cors");
-var serverless = require ('serverless-http');
-var port = process.env.PORT || 5000;
-var app = express();
-var asignaturaroutes = require("../../Backend/routes/asignaturaroutes.js");
-app.use(express.json());
+const express = require('express');
+const serverless = require('serverless-http');
+const cors = require('cors');
+
+const app = express();
 app.use(cors());
+app.use(express.json());
 
-var router = express.Router();
-router.use ("/asignatura",asignaturaroutes);
-var handler = app.use ('/.netlify/functions',router);
-exports.handler = serverless (app);
+// Asegúrate de que esta ruta sea correcta respecto a la ubicación actual del archivo
+const asignaturaRoutes = require('../../Backend/routes/asignaturaroutes.js');
 
+// Monta las rutas bajo una ruta base clara
+app.use('/.netlify/functions/assignments/asignatura', asignaturaRoutes);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Exporta para Netlify
+module.exports.handler = serverless(app);
 
 
 

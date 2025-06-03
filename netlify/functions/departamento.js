@@ -1,4 +1,45 @@
+
 const express = require('express');
+const serverless = require('serverless-http');
+const cors = require('cors');
+
+// Importar el controlador directamente para debugging
+const departamentoController = require('../../Backend/controllers/departamentocontroller.js');
+
+const app = express();
+
+// Middlewares
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.use(express.json());
+
+// Log para debugging
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`, req.body);
+  next();
+});
+
+// Rutas directas para debugging
+app.get('/.netlify/functions/departamento', departamentoController.consultarDepartamento);
+app.put('/.netlify/functions/departamento', departamentoController.editarDepartamento);
+
+// Ruta alternativa sin prefijo para testing
+app.get('/', departamentoController.consultarDepartamento);
+app.put('/', departamentoController.editarDepartamento);
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error('Error en departamento function:', err);
+  res.status(500).json({ error: err.message });
+});
+
+module.exports.handler = serverless(app);
+
+
+/* const express = require('express');
 const serverless = require('serverless-http');
 const cors = require('cors');
 const departamentoroutes = require('../../Backend/routes/departamentoroutes.js');
@@ -9,14 +50,7 @@ app.use(express.json());
 
 app.use('../netlify/functions/departamento', departamentoroutes); // ✅
 
-module.exports.handler = serverless(app);
-
-
-
-
-
-
-
+module.exports.handler = serverless(app); */
 
 // let departamento = { nombre: "Ingeniería de Sistemas y Computación" };
 

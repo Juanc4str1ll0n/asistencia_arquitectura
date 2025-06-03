@@ -1,7 +1,26 @@
+[build]
+  functions = "netlify/functions"
+  publish = "Frontend"
+
 [functions]
-  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
-  from = "/api/*"
-  to = "../netlify/functions/:splat"
+  from = "/api/departamento/*"
+  to = "/.netlify/functions/departamento/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/estudiante/*"
+  to = "/.netlify/functions/estudiante/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/asistencia/*"
+  to = "/.netlify/functions/asistencia/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/asignatura/*"
+  to = "/.netlify/functions/asignatura/:splat"
   status = 200

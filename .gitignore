@@ -1,2 +1,12 @@
-# Local Netlify folder
-.netlify
+
+node_modules/
+.env
+.env.local
+.env.production
+.netlify/
+dist/
+build/
+.DS_Store
+*.log
+firebase-debug.log
+.firebase/
