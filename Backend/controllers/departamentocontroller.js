@@ -1,4 +1,4 @@
-const { db } = require('../Confi/firebase');
+const { db } = require('../Confi/FirebaseCofj');
 const { doc, getDoc, setDoc } = require('firebase/firestore');
 const DEPARTAMENTO_DOC_ID = 'departamento';
 const COLLECTION_NAME = 'configuracion';
